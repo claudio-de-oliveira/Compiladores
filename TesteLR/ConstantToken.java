@@ -1,4 +1,4 @@
-package TesteLR;
+package Compiladores.TesteLR;
 
 public class ConstantToken extends Token {
 

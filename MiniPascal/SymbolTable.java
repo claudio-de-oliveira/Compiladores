@@ -1,21 +1,28 @@
-package MiniPascal;
+package Compiladores.MiniPascal;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import CompilerBase.Environment;
+import Compiladores.CompilerBase.Environment;
 
 public class SymbolTable extends Environment {
 
+    private static SymbolTable global = new SymbolTable(null);
+    public static SymbolTable actual = global;
+
     private boolean _incode; // Declarativa
 
-    private SymbolTable _parent;
+    public SymbolTable _parent;
 
-    private Map<String, IdType> _hash;
+    // Declaração dos parâmetros
+    private Map<String, IdType> _parameters;
+    // Declarações de variáveis, funções e procedimentos 
+    private Map<String, IdType> _locals;
 
     public SymbolTable(SymbolTable parent) {
 
-        _hash = new HashMap<String, IdType>();
+        _parameters = new HashMap<String, IdType>();
+        _locals = new HashMap<String, IdType>();
 
         _parent = parent;
     }
@@ -28,15 +35,31 @@ public class SymbolTable extends Environment {
         _incode = flag;
     }
 
-    public IdType Find(String key) {
+    public IdType FindLocal(String key) {
         // Procura no escopo local
-        if (_hash.containsKey(key)) {
-            return _hash.get(key);
+        if (_parameters.containsKey(key)) {
+            return _parameters.get(key);
         }
+        if (_locals.containsKey(key)) {
+            return _locals.get(key);
+        }
+        // Não encontrado
+        return null;
+    }
+
+    public IdType FindGlobal(String key) {
+        
+        IdType ret = FindLocal(key);
+
+        if (ret != null) {
+            return ret;
+        }
+        
         // Procura no escopo pai
         if (_parent != null) {
-            return _parent.Find(key);
+            return _parent.FindGlobal(key);
         }
+        
         // Não encontrado
         return null;
     }

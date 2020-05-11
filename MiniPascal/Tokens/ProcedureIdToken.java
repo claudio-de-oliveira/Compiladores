@@ -1,6 +1,6 @@
-package MiniPascal.Tokens;
+package Compiladores.MiniPascal.Tokens;
 
-import MiniPascal.*;
+import Compiladores.MiniPascal.*;
 
 public class ProcedureIdToken extends Token {
 

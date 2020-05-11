@@ -1,4 +1,4 @@
-package TesteLR;
+package Compiladores.TesteLR;
 
 public class UnknowToken extends Token {
 

@@ -1,8 +1,8 @@
-package MiniPascal.Tokens;
+package Compiladores.MiniPascal.Tokens;
 
-import CompilerBase.*;
+import Compiladores.CompilerBase.*;
 
-import MiniPascal.*;
+import Compiladores.MiniPascal.*;
 
 public class Token extends AbstractToken {
 

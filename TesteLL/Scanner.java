@@ -1,7 +1,7 @@
-package TesteLL;
+package Compiladores.TesteLL;
 
-import CompilerBase.*;
-import CompilerBase.LL.*;
+import Compiladores.CompilerBase.*;
+import Compiladores.CompilerBase.LL.*;
 
 public class Scanner extends AbsScanner {
 

@@ -1,6 +1,6 @@
-package CompilerBase.LR;
+package Compiladores.CompilerBase.LR;
 
-import CompilerBase.*;
+import Compiladores.CompilerBase.*;
 
 public abstract class AbsScanner {
 

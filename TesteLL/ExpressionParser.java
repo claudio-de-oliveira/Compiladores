@@ -1,9 +1,9 @@
-package TesteLL;
+package Compiladores.TesteLL;
 
 import java.util.Stack;
 
-import CompilerBase.LL.AbsTag;
-import CompilerBase.LL.Parser;
+import Compiladores.CompilerBase.LL.AbsTag;
+import Compiladores.CompilerBase.LL.Parser;
 
 public class ExpressionParser extends Parser {
 

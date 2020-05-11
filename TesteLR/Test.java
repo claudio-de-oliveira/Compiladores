@@ -1,6 +1,6 @@
-package TesteLR;
+package Compiladores.TesteLR;
 
-import CompilerBase.LR.*;
+import Compiladores.CompilerBase.LR.*;
 
 public class Test {
     public static void main(final String[] args) {

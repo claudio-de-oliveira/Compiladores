@@ -1,6 +1,6 @@
-package TesteLL;
+package Compiladores.TesteLL;
 
-import CompilerBase.*;
+import Compiladores.CompilerBase.*;
 
 public class Token extends AbstractToken {
 

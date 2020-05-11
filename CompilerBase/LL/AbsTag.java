@@ -1,7 +1,7 @@
 
-package CompilerBase.LL;
+package Compiladores.CompilerBase.LL;
 
-import CompilerBase.AbstractTag;
+import Compiladores.CompilerBase.AbstractTag;
 
 public abstract class AbsTag extends AbstractTag {
 

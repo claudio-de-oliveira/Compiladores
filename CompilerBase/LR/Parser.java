@@ -1,8 +1,8 @@
-package CompilerBase.LR;
+package Compiladores.CompilerBase.LR;
 
 import java.util.*; 
 
-import CompilerBase.*;
+import Compiladores.CompilerBase.*;
 
 public abstract class Parser {
 

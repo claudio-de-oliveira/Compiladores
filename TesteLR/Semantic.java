@@ -1,7 +1,7 @@
-package TesteLR;
+package Compiladores.TesteLR;
 
-import CompilerBase.*;
-import CompilerBase.LR.*;
+import Compiladores.CompilerBase.*;
+import Compiladores.CompilerBase.LR.*;
 
 import java.util.*; 
 

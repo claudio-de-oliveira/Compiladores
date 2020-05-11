@@ -1,8 +1,8 @@
-package CompilerBase.LL;
+package Compiladores.CompilerBase.LL;
 
 import java.util.*;
 
-import CompilerBase.*;
+import Compiladores.CompilerBase.*;
 
 public abstract class AbsSemantic {
 

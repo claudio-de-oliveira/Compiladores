@@ -1,6 +1,6 @@
-package TesteLL;
+package Compiladores.TesteLL;
 
-import CompilerBase.LL.*;
+import Compiladores.CompilerBase.LL.*;
 
 public class Test {
     public static void main(final String[] args) {

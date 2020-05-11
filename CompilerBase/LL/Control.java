@@ -1,6 +1,6 @@
-package CompilerBase.LL;
+package Compiladores.CompilerBase.LL;
 
-import CompilerBase.*;
+import Compiladores.CompilerBase.*;
 
 public abstract class Control {
 

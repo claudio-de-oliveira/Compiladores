@@ -1,4 +1,4 @@
-package CompilerBase.LR;
+package Compiladores.CompilerBase.LR;
 
 public enum Acao {
 

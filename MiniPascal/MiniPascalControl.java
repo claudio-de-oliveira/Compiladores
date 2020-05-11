@@ -1,6 +1,6 @@
-package MiniPascal;
+package Compiladores.MiniPascal;
 
-import CompilerBase.LL.*;
+import Compiladores.CompilerBase.LL.*;
 
 public class MiniPascalControl extends Control {
 

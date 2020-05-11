@@ -1,6 +1,6 @@
-package TesteLR;
+package Compiladores.TesteLR;
 
-import CompilerBase.LR.*;
+import Compiladores.CompilerBase.LR.*;
 
 public class ExpressionControl extends Control {
 

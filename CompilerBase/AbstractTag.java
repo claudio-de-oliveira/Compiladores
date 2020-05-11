@@ -1,4 +1,4 @@
-package CompilerBase;
+package Compiladores.CompilerBase;
 
 public abstract class AbstractTag {
 

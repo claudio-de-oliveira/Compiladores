@@ -1,6 +1,6 @@
-package TesteLR;
+package Compiladores.TesteLR;
 
-import CompilerBase.LR.Parser;
+import Compiladores.CompilerBase.LR.Parser;
 
 public class ExpressionParser extends Parser {
 

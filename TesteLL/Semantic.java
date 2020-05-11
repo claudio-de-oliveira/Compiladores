@@ -1,9 +1,9 @@
-package TesteLL;
+package Compiladores.TesteLL;
 
 import java.util.Stack;
 
-import CompilerBase.*;
-import CompilerBase.LL.*;
+import Compiladores.CompilerBase.*;
+import Compiladores.CompilerBase.LL.*;
 
 public class Semantic extends AbsSemantic {
 

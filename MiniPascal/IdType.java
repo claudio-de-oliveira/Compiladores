@@ -1,6 +1,6 @@
-package MiniPascal;
+package Compiladores.MiniPascal;
 
 public abstract class IdType {
-
+    
 }
 

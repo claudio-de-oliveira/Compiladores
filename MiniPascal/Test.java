@@ -1,4 +1,4 @@
-package MiniPascal;
+package Compiladores.MiniPascal;
 
 public class Test {
 

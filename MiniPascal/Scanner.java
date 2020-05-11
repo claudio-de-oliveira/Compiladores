@@ -1,10 +1,10 @@
-package MiniPascal;
+package Compiladores.MiniPascal;
 
 import java.util.*;
 
-import CompilerBase.*;
-import CompilerBase.LL.*;
-import MiniPascal.Tokens.*;
+import Compiladores.CompilerBase.*;
+import Compiladores.CompilerBase.LL.*;
+import Compiladores.MiniPascal.Tokens.*;
 
 public class Scanner extends AbsScanner {
 
