@@ -12,7 +12,7 @@ public class Scanner extends AbsScanner {
     }
 
     @Override
-    public AbstractToken nextToken(Environment env, String text) {
+    public AbstractToken nextToken(AbstractSymbolTable env, String text) {
         
         int state = 0;
         int integerPart = 0;

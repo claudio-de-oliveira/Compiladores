@@ -14,7 +14,7 @@ public class Semantic extends AbsSemantic {
     }
 
     @Override
-    public void Execute(Environment env, int rule, AbstractToken token) {
+    public void Execute(AbstractSymbolTable env, int rule, AbstractToken token) {
 
         switch(rule) {
             // 0. S -> E # @Print

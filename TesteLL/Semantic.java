@@ -8,7 +8,7 @@ import Compiladores.CompilerBase.LL.*;
 public class Semantic extends AbsSemantic {
 
     @Override
-    public void Execute(Environment env, AbsTag action, Stack<AbsTag> stk, AbstractToken token) {
+    public void Execute(AbstractSymbolTable env, AbsTag action, Stack<AbsTag> stk, AbstractToken token) {
 
         int tos = stk.size() - 1;
 

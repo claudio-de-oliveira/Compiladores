@@ -7,13 +7,14 @@ import Compiladores.CompilerBase.*;
 public abstract class Parser {
 
     private final Control _control;
+    public final Control getControl() { return _control; }
 
     private final AbsScanner _scanner;
     private final AbsSemantic _semantic;
-    private final Environment _env;
+    private final AbstractSymbolTable _env;
     private final Stack<AbsTag> _stk; // Pilha do parser
 
-    public Parser(Control control, AbsScanner scanner, AbsSemantic semantic, Environment env) {
+    public Parser(Control control, AbsScanner scanner, AbsSemantic semantic, AbstractSymbolTable env) {
         _control = control;
         _scanner = scanner;
         _semantic = semantic;
@@ -43,9 +44,11 @@ public abstract class Parser {
             AbstractToken previous = null;
 
             while (true) {
+
                 AbsTag A = _stk.pop();
 
                 if (A.isVariable()) {
+
                     int r = _control.getEntry(A, token);
 
                     if (r == -1) {
@@ -55,7 +58,9 @@ public abstract class Parser {
                     PushRHS(_stk, r);
 
                     AttributeAdjust(A, r, _stk);
-                } else if (A.isTerminal()) {
+                } 
+                else if (A.isTerminal()) {
+
                     if (A.equals(token.toTag())) // Eh pop?
                     {
                         if (A.isEndMark()) { // Eh accept?
@@ -66,9 +71,12 @@ public abstract class Parser {
                         previous = token;
                         token = _scanner.nextToken(_env, txt);
                         System.out.println(token);
-                    } else
+                    } 
+                    else {
                         return false;
-                } else {
+                    }
+                } 
+                else {
                     _semantic.Execute(_env, A, _stk, previous);
                 }
             }

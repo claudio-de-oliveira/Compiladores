@@ -4,5 +4,5 @@ import Compiladores.CompilerBase.*;
 
 public abstract class AbsScanner {
 
-    public abstract AbstractToken nextToken(Environment env, String text) throws Exception;
+    public abstract AbstractToken nextToken(AbstractSymbolTable env, String text) throws Exception;
 }

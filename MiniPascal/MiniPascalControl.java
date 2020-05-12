@@ -7,17 +7,17 @@ public class MiniPascalControl extends Control {
     // Função de parsing
     private static AbsTag[][] _rhs = new Tag[][] {
         /* 0*/ new Tag[] {Tag.program, Tag.ENDMARK, },
-        /* 1*/ new Tag[] {Tag.vt_1, Tag.vt_2, Tag.vt_3, Tag.identifier_list, Tag.vt_4, Tag.vt_5, Tag.declarations, Tag.subprogram_declarations, Tag.compound_statement, Tag.vt_6, },
-        /* 2*/ new Tag[] {Tag.vt_2, Tag.identifier_list_line, },
-        /* 3*/ new Tag[] {},
-        /* 4*/ new Tag[] {Tag.vt_32, Tag.vt_2, Tag.identifier_list_line, },
+        /* 1*/ new Tag[] {Tag.vt_1, Tag.vt_2, Tag.vt_3, Tag.identifier_list, Tag._ProgramArguments, Tag.vt_4, Tag.vt_5, Tag.declarations, Tag.subprogram_declarations, Tag.compound_statement, Tag.vt_6, },
+        /* 2*/ new Tag[] {Tag.vt_2, Tag._CreateList, Tag.identifier_list_line, },
+        /* 3*/ new Tag[] {Tag._Echo, },
+        /* 4*/ new Tag[] {Tag.vt_32, Tag.vt_2, Tag._InsertList, Tag.identifier_list_line, },
         /* 5*/ new Tag[] {Tag.declarations_line, },
         /* 6*/ new Tag[] {},
-        /* 7*/ new Tag[] {Tag.vt_33, Tag.identifier_list, Tag.vt_18, Tag.type, Tag.vt_5, Tag.declarations_line, },
+        /* 7*/ new Tag[] {Tag.vt_33, Tag.identifier_list, Tag._VarIdList, Tag.vt_18, Tag.type, Tag._VarDec, Tag.vt_5, Tag.declarations_line, },
         /* 8*/ new Tag[] {Tag.standard_type, },
         /* 9*/ new Tag[] {Tag.vt_9, Tag.vt_10, Tag.vt_11, Tag.vt_12, Tag.vt_11, Tag.vt_13, Tag.vt_14, Tag.standard_type, },
-        /* 10*/ new Tag[] {Tag.vt_15, },
-        /* 11*/ new Tag[] {Tag.vt_16, },
+        /* 10*/ new Tag[] {Tag.vt_15, Tag._Integer, },
+        /* 11*/ new Tag[] {Tag.vt_16, Tag._Real, },
         /* 12*/ new Tag[] {Tag.subprogram_declarations_line, },
         /* 13*/ new Tag[] {},
         /* 14*/ new Tag[] {Tag.subprogram_head, Tag.declarations, Tag.compound_statement, Tag.vt_5, Tag.subprogram_declarations_line, },
@@ -28,13 +28,13 @@ public class MiniPascalControl extends Control {
         /* 19*/ new Tag[] {Tag.vt_2, Tag.identifier_list_line, Tag.vt_18, Tag.type, Tag.parameter_list_line, },
         /* 20*/ new Tag[] {},
         /* 21*/ new Tag[] {Tag.vt_5, Tag.identifier_list, Tag.vt_18, Tag.type, Tag.parameter_list_line, },
-        /* 22*/ new Tag[] {Tag.vt_7, Tag.optional_statements, Tag.vt_8, },
+        /* 22*/ new Tag[] {Tag._Begin, Tag.vt_7, Tag.optional_statements, Tag._End, Tag.vt_8, },
         /* 23*/ new Tag[] {},
         /* 24*/ new Tag[] {Tag.statement_list, },
         /* 25*/ new Tag[] {Tag.statement, Tag.statement_list_line, },
         /* 26*/ new Tag[] {Tag.variable, Tag.vt_20, Tag.expression, },
         /* 27*/ new Tag[] {Tag.procedure_statement, },
-        /* 28*/ new Tag[] {Tag.vt_7, Tag.optional_statements, Tag.vt_8, },
+        /* 28*/ new Tag[] {Tag._Begin, Tag.vt_7, Tag.optional_statements, Tag._End, Tag.vt_8, },
         /* 29*/ new Tag[] {Tag.vt_21, Tag.expression, Tag.vt_22, Tag.statement, Tag.vt_23, Tag.statement, },
         /* 30*/ new Tag[] {Tag.vt_24, Tag.expression, Tag.vt_25, Tag.statement, },
         /* 31*/ new Tag[] {Tag.vt_26, Tag.variable_line, },
@@ -141,9 +141,14 @@ public class MiniPascalControl extends Control {
         new int[] {-1, -1, -1, -1, -1, 61, -1, -1, 60, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, },
         };
 
-     public MiniPascalControl() {
+    public MiniPascalControl() {
         super(_rhs, _M);
     }
+
 }
 
 
+//    "var" <identifier_list> ":" <type> @VarDec ";"
+
+// <type> ::= "integer" @Integer
+// <type> ::= "real" @Real

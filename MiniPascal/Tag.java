@@ -5,40 +5,40 @@ import Compiladores.CompilerBase.LL.*;
 public class Tag extends AbsTag {
 
     public static Tag 
-            program_line_line = new Tag(VARIABLE | 0, "<program''>", 0),
-            program = new Tag(VARIABLE | 1, "<program>", 0),
-            identifier_list = new Tag(VARIABLE | 2, "<identifier_list>", 0),
-            identifier_list_line = new Tag(VARIABLE | 3, "<identifier_list'>", 0),
-            declarations = new Tag(VARIABLE | 4, "<declarations>", 0),
-            declarations_line = new Tag(VARIABLE | 5, "<declarations'>", 0), 
-            type = new Tag(VARIABLE | 6, "<type>", 0),
-            standard_type = new Tag(VARIABLE | 7, "<standard_type>", 0),
-            subprogram_declarations = new Tag(VARIABLE | 8, "<subprogram_declarations>", 0),
-            subprogram_declarations_line = new Tag(VARIABLE | 9, "<subprogram_declarations'>", 0),
-            subprogram_head = new Tag(VARIABLE | 10, "<subprogram_head>", 0),
-            arguments = new Tag(VARIABLE | 11, "<arguments>", 0),
-            parameter_list = new Tag(VARIABLE | 12, "<parameter_list>", 0),
-            parameter_list_line = new Tag(VARIABLE | 13, "<parameter_list'>", 0),
-            compound_statement = new Tag(VARIABLE | 14, "<compound_statement>", 0),
-            optional_statements = new Tag(VARIABLE | 15, "<optional_statements>", 0),
-            statement_list = new Tag(VARIABLE | 16, "<statement_list>", 0),
-            statement = new Tag(VARIABLE | 17, "<statement>", 0), 
-            variable = new Tag(VARIABLE | 18, "<variable>", 0),
-            variable_line = new Tag(VARIABLE | 19, "<variable'>", 0),
-            expression = new Tag(VARIABLE | 20, "<expression>", 0),
-            simple_expression = new Tag(VARIABLE | 21, "<simple_expression>", 0),
-            term = new Tag(VARIABLE | 22, "<term>", 0), 
-            factor = new Tag(VARIABLE | 23, "<factor>", 0),
-            factor_line = new Tag(VARIABLE | 24, "<factor'>", 0),
-            expression_list = new Tag(VARIABLE | 25, "<expression_list>", 0),
-            simple_expression_line = new Tag(VARIABLE | 26, "<simple_expression'>", 0),
-            expression_line = new Tag(VARIABLE | 27, "<expression'>", 0),
-            expression_list_line = new Tag(VARIABLE | 28, "<expression_list'>", 0),
-            sign = new Tag(VARIABLE | 29, "<sign>", 0), 
-            term_line = new Tag(VARIABLE | 30, "<term'>", 0),
-            procedure_statement = new Tag(VARIABLE | 31, "<procedure_statement>", 0),
-            procedure_statement_line = new Tag(VARIABLE | 32, "<procedure_statement'>", 0),
-            statement_list_line = new Tag(VARIABLE | 33, "<statement_list'>", 0);
+            program_line_line = new Tag(VARIABLE | 0, "program''", 0),
+            program = new Tag(VARIABLE | 1, "program", 0),
+            identifier_list = new Tag(VARIABLE | 2, "identifier_list", 0),
+            identifier_list_line = new Tag(VARIABLE | 3, "identifier_list'", 1),
+            declarations = new Tag(VARIABLE | 4, "declarations", 0),
+            declarations_line = new Tag(VARIABLE | 5, "declarations'", 0), 
+            type = new Tag(VARIABLE | 6, "type", 0),
+            standard_type = new Tag(VARIABLE | 7, "standard_type", 0),
+            subprogram_declarations = new Tag(VARIABLE | 8, "subprogram_declarations", 0),
+            subprogram_declarations_line = new Tag(VARIABLE | 9, "subprogram_declarations'", 0),
+            subprogram_head = new Tag(VARIABLE | 10, "subprogram_head", 0),
+            arguments = new Tag(VARIABLE | 11, "arguments", 0),
+            parameter_list = new Tag(VARIABLE | 12, "parameter_list", 0),
+            parameter_list_line = new Tag(VARIABLE | 13, "parameter_list'", 0),
+            compound_statement = new Tag(VARIABLE | 14, "compound_statement", 0),
+            optional_statements = new Tag(VARIABLE | 15, "optional_statements", 0),
+            statement_list = new Tag(VARIABLE | 16, "statement_list", 0),
+            statement = new Tag(VARIABLE | 17, "statement", 0), 
+            variable = new Tag(VARIABLE | 18, "variable", 0),
+            variable_line = new Tag(VARIABLE | 19, "variable'", 0),
+            expression = new Tag(VARIABLE | 20, "expression", 0),
+            simple_expression = new Tag(VARIABLE | 21, "simple_expression", 0),
+            term = new Tag(VARIABLE | 22, "term", 0), 
+            factor = new Tag(VARIABLE | 23, "factor", 0),
+            factor_line = new Tag(VARIABLE | 24, "factor'", 0),
+            expression_list = new Tag(VARIABLE | 25, "expression_list", 0),
+            simple_expression_line = new Tag(VARIABLE | 26, "simple_expression'", 0),
+            expression_line = new Tag(VARIABLE | 27, "expression'", 0),
+            expression_list_line = new Tag(VARIABLE | 28, "expression_list'", 0),
+            sign = new Tag(VARIABLE | 29, "sign", 0), 
+            term_line = new Tag(VARIABLE | 30, "term'", 0),
+            procedure_statement = new Tag(VARIABLE | 31, "procedure_statement", 0),
+            procedure_statement_line = new Tag(VARIABLE | 32, "procedure_statement'", 0),
+            statement_list_line = new Tag(VARIABLE | 33, "statement_list'", 0);
 
     public static Tag 
             ENDMARK = new Tag(TERMINAL | 0, "#"), 
@@ -79,17 +79,25 @@ public class Tag extends AbsTag {
             UNKNOW = new Tag(TERMINAL | 35, "unknow");
 
     public static Tag 
-            _Echo = new Tag(SEMANTIC | 0, "@Echo", 0), 
-            _Done = new Tag(SEMANTIC | 1, "@Done", 0),
-            _Begin = new Tag(SEMANTIC | 2, "@Begin"),
-            _End = new Tag(SEMANTIC | 3, "@End")
+            _Echo = new Tag(SEMANTIC | 0, "Echo", 1), 
+            _Done = new Tag(SEMANTIC | 1, "Done", 0),
+            _Begin = new Tag(SEMANTIC | 2, "Begin"),
+            _End = new Tag(SEMANTIC | 3, "End"),
+            _VarDec = new Tag(SEMANTIC | 4, "VarDec", 2),
+            _Real  = new Tag(SEMANTIC | 5, "Real"),
+            _Integer = new Tag(SEMANTIC | 6, "Integer"),
+            _CreateList = new Tag(SEMANTIC | 7, "CreateList"),
+            _InsertList = new Tag(SEMANTIC | 8, "InsertList", 1),
+            _VarIdList = new Tag(SEMANTIC | 9, "VarIdList", 1),
+            _ProgramArguments = new Tag(SEMANTIC | 900, "ProgramArguments", 1)
             ;
 
-    public Tag(int valor, String nome, int nAtributes) {
+    public Tag(final int valor, final String nome, final int nAtributes) {
+
         super(valor, nome, nAtributes);
     }
 
-    public Tag(int valor, String nome) {
+    public Tag(final int valor, final String nome) {
         this(valor, nome, 0);
     }
 
@@ -105,4 +113,5 @@ public class Tag extends AbsTag {
     public boolean isEndMark() {
         return this.equals(ENDMARK);
     }
+
 }

@@ -36,7 +36,7 @@ public class Scanner extends AbsScanner {
     }
 
     @Override
-    public AbstractToken nextToken(Environment env, final String text) throws Exception {
+    public AbstractToken nextToken(AbstractSymbolTable env, final String text) throws Exception {
         
         int state = 0;
         int integerPart = 0;
@@ -144,12 +144,12 @@ public class Scanner extends AbsScanner {
                         break;
                     }
                     if (ch == ',') {
-                        state = 20;
+                        state = 21;
                         _currentPosition++;
                         break;
                     }
                     if (ch == ':') {
-                        state = 21;
+                        state = 22;
                         _currentPosition++;
                         break;
                     }
@@ -230,6 +230,13 @@ public class Scanner extends AbsScanner {
                     break;
 
                 case 6:
+                    // O QUE FAZER PARA DIFERENCIAR OS VÁRIOS TIPOS DE IDENTIFICADORES
+                    // VT_2  = "id"
+                    // ......................
+                    // VT_26 = "idvar"
+                    // VT_27 = "idfunc"
+                    // VT_28 = "idproc"
+
                     // RETRACT
                     _currentPosition--;
 
@@ -238,27 +245,37 @@ public class Scanner extends AbsScanner {
                     if (reservedWords.containsKey(lexema)) {
                         return reservedWords.get(lexema);
                     }
-                    else // Consultar a tabela de símbolos
-                    // Se se tratar de um símbolo
-                    //      return new IdentifierToken(lexema);
-                    // Se não
-                    //      o identificador é de uma variável?
-                    //          return new VarIdentifierToken(lexema);
-                    //      o identificador é de uma função?
-                    //          return new FunctionIdToken(lexema);
-                    //      o identificador é de um procedimento?
-                    //          return new ProcedureIdToken(lexema);
-                    
-                    
-                    {
-                        // ? O QUE FAZER PARA DIFERENCIAR OS VÁRIOS TIPOS DE IDENTIFICADORES
-                        // VT_2  = "id"
-                        // ......................
-                        // VT_26 = "idvar"
-                        // VT_27 = "idfunc"
-                        // VT_28 = "idproc"
-                    }
+                    else {
+                        // Consultar a tabela de símbolos
+                        SymbolTable table = (SymbolTable) env;
 
+                        // Estou na parte de declarações?
+                        if (!table.getInCode()) {
+                            // Se se tratar de um símbolo
+                            if (table.FindLocal(lexema) == null) {
+                                return new IdentifierToken(lexema);
+                            }
+                            else {
+                                assert(false): "Identificadores não podem ser redefinidos!";
+                            }
+                        } 
+                        else {
+                            IdType type = table.FindGlobal(lexema);
+
+                            // o identificador é de uma variável?
+                            if (type instanceof VarType) {
+                                return new VarIdentifierToken(lexema);
+                            }
+                            // o identificador é de uma função?
+                            if (type instanceof FunctionType) {
+                                return new FunctionIdToken(lexema);
+                            }
+                            // o identificador é de um procedimento?
+                            if (type instanceof ProcedureType) {
+                                return new ProcedureIdToken(lexema);
+                            }
+                        }
+                    }
 
                 case 10: // "("
                     return Token.VT_3;
@@ -276,7 +293,7 @@ public class Scanner extends AbsScanner {
                     if (lexema == "-") {
                         return new AddOpToken(Operators.SUB);
                     }
-                    throw new Exception("Não pode chegar aqui!"); 
+                    assert(false): "Não pode chegar aqui!"; 
 
                 case 14:
                     if (lexema == "*") {
@@ -346,7 +363,7 @@ public class Scanner extends AbsScanner {
                     if (lexema == "<>") {
                         return new RelOpToken(Operators.NEQ);
                     }
-                    throw new Exception("Não pode chegar aqui!"); 
+                    assert(false): "Não pode chegar aqui!"; 
 
                 case 21:
                     return Token.VT_32;

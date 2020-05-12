@@ -9,9 +9,9 @@ public abstract class Parser {
     private final Control _control;
     private final AbsScanner _scanner;
     private final AbsSemantic _semantic;
-    private final Environment _env;
+    private final AbstractSymbolTable _env;
 
-    public Parser(final Control control, final AbsScanner scanner, final AbsSemantic semantic, Environment env) {
+    public Parser(final Control control, final AbsScanner scanner, final AbsSemantic semantic, AbstractSymbolTable env) {
         _control = control;
         _scanner = scanner;
         _semantic = semantic;
