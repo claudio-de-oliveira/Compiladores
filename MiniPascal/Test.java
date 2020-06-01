@@ -32,15 +32,16 @@ public class Test {
         String text = 
             "program teste (input, output);\n" +
             "" +
-            "var x : integer;" +
+            "   var x, y, z : integer;\n" +
             "" +
-            "function Max (a, b: integer) : integer;" +
-            "   begin" +
-            "       if a > b then Max := a else Max := b" +
-            "   end" +
-            "" +
+            // "   var pi, epsilon : real;\n" +
+            // "" +
+            // "   procedure proc(a, b: integer);\n" +
+            // "       var c : real;\n" +
+            // "   begin\n" +
+            // "   end;\n" +
+            // "" +
             "begin\n" +
-            "   x := Max(4, 5)" +
             "end.\n";
 
         try {

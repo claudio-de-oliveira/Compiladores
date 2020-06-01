@@ -66,7 +66,7 @@ public class Scanner extends AbsScanner {
         // VT_31 = "relop"
         // VT_32 = ","
         // VT_34 = "mulop"
-    
+
         while (true) {
 
             char ch = text.charAt(_currentPosition);
@@ -155,15 +155,16 @@ public class Scanner extends AbsScanner {
                     }
 
                     if (ch == '.') {
-                        state = 24;
+                        state = 25;
                         _currentPosition++;
                         break;
                     }
 
                     if (ch == '#') {
-                        state = 99;
-                        _currentPosition++;
-                        break;
+                        return Token.ENDMARK;
+                        // state = 99;
+                        // _currentPosition++;
+                        // break;
                     }
 
                     // outro: ERRO
@@ -240,6 +241,7 @@ public class Scanner extends AbsScanner {
                     // RETRACT
                     _currentPosition--;
 
+                    // A linguagem pascal nao eh sensivel ao caso da letra!
                     lexema = lexema.toLowerCase();
 
                     if (reservedWords.containsKey(lexema)) {
@@ -260,6 +262,8 @@ public class Scanner extends AbsScanner {
                             }
                         } 
                         else {
+                            // Dentro da parte de instrucoes imperativas
+                            // (dentro de begin..end)
                             IdType type = table.FindGlobal(lexema);
 
                             // o identificador é de uma variável?
@@ -267,11 +271,11 @@ public class Scanner extends AbsScanner {
                                 return new VarIdentifierToken(lexema);
                             }
                             // o identificador é de uma função?
-                            if (type instanceof FunctionType) {
+                            if (type instanceof FuncType) {
                                 return new FunctionIdToken(lexema);
                             }
                             // o identificador é de um procedimento?
-                            if (type instanceof ProcedureType) {
+                            if (type instanceof ProcType) {
                                 return new ProcedureIdToken(lexema);
                             }
                         }
@@ -383,7 +387,7 @@ public class Scanner extends AbsScanner {
 
                 case 24: // :
                     // RETRACT 
-                    _currentPosition--;
+                    // _currentPosition--;
                     return Token.VT_18;
 
                 case 25:

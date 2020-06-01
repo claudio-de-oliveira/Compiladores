@@ -1,6 +1,6 @@
 package Compiladores.MiniPascal;
 
-public class FunctionType extends IdType {
+public class FuncType extends IdType {
 
     // tipo da função
     public BasicType type;
@@ -9,7 +9,7 @@ public class FunctionType extends IdType {
 
     // Cria um novo escopo para o procedimento e atualiza o 
     // escopo corrente
-    public FunctionType() {
+    public FuncType() {
         scopo = new SymbolTable(SymbolTable.actual);
         SymbolTable.actual = scopo;
     }

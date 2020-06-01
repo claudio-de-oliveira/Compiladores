@@ -33,18 +33,18 @@ public class Semantic extends AbsSemantic {
             BasicType type = (BasicType)action.GetAttribute(0);
             @SuppressWarnings("unchecked")
             List<String> ids = (List<String>)action.GetAttribute(1);
-
+ 
             for(String id: ids) {
                 table.InsertLocal(id, new VarType(type));
             }
             return;
         }
         if (action.equals(Tag._Integer)) {
-            stk.peek().SetAttribute(0, BasicType.INTEGER);
+            stk.peek().SetAttribute(0, BasicType.INTEGER); // *** Atividade: Modificar para uma instancia de IntegerType
             return;
         }
         if (action.equals(Tag._Real)) {
-            stk.peek().SetAttribute(0, BasicType.REAL);
+            stk.peek().SetAttribute(0, BasicType.REAL); // *** Atividade: Modificar para uma instancia de RealType
             return;
         }
         if (action.equals(Tag._CreateList)) {
@@ -77,6 +77,18 @@ public class Semantic extends AbsSemantic {
             for(String id: list) {
                 table.InsertParameter(id, new UndefinedType());
             }
+            return;
+        }
+        if (action.equals(Tag._ProcId)) {
+            String id = ((IdentifierToken)token).getId();
+            SymbolTable actual = SymbolTable.actual;
+            actual.InsertLocal(id, new ProcType());
+            return;
+        }
+        if (action.equals(Tag._FuncId)) {
+            String id = ((IdentifierToken)token).getId();
+            SymbolTable actual = SymbolTable.actual;
+            actual.InsertLocal(id, new FuncType());
             return;
         }
     }

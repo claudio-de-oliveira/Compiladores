@@ -80,7 +80,7 @@ public class Tag extends AbsTag {
 
     public static Tag 
             _Echo = new Tag(SEMANTIC | 0, "Echo", 1), 
-            _Done = new Tag(SEMANTIC | 1, "Done", 0),
+            _Done = new Tag(SEMANTIC | 1, "Done"),
             _Begin = new Tag(SEMANTIC | 2, "Begin"),
             _End = new Tag(SEMANTIC | 3, "End"),
             _VarDec = new Tag(SEMANTIC | 4, "VarDec", 2),
@@ -89,6 +89,8 @@ public class Tag extends AbsTag {
             _CreateList = new Tag(SEMANTIC | 7, "CreateList"),
             _InsertList = new Tag(SEMANTIC | 8, "InsertList", 1),
             _VarIdList = new Tag(SEMANTIC | 9, "VarIdList", 1),
+            _ProcId = new Tag(SEMANTIC | 10, "ProcId"),
+            _FuncId = new Tag(SEMANTIC | 11, "FuncId"),
             _ProgramArguments = new Tag(SEMANTIC | 900, "ProgramArguments", 1)
             ;
 
