@@ -6,15 +6,17 @@
 5. <declarations> ::= <declarations'> .
 6. <declarations'> ::= .
 7. <declarations'> ::= "var" <identifier_list> @VarIdList ":" <type> @VarDec ";" <declarations'> .
+
 8. <type> ::= <standard_type> .
 9. <type> ::= "array" "[" "num" ".." "num" "]" "of" <standard_type> .
 10. <standard_type> ::= "integer" @Integer .
 11. <standard_type> ::= "real" @Real .
+
 12. <subprogram_declarations> ::= <subprogram_declarations'> .
 13. <subprogram_declarations'> ::= .
 14. <subprogram_declarations'> ::= <subprogram_head> <declarations> <compound_statement> ";" <subprogram_declarations'> .
-16. <subprogram_head> ::= "procedure" "id" @ProcId <arguments> ";" .
 15. <subprogram_head> ::= "function" "id" @FuncId <arguments> ":" <standard_type> ";" .
+16. <subprogram_head> ::= "procedure" "id" @ProcId <arguments> ";" .
 17. <arguments> ::= .
 18. <arguments> ::= "(" <parameter_list> ")" .
 19. <parameter_list> ::= "id" <identifier_list'> ":" <type> <parameter_list'> .

@@ -32,12 +32,13 @@ public class Test {
         String text = 
             "program teste (input, output);\n" +
             "" +
-            "   var x, y, z : integer;\n" +
-            "" +
-            // "   var pi, epsilon : real;\n" +
+            "   var a : array [1..10] of integer;\n" +
             // "" +
             // "   procedure proc(a, b: integer);\n" +
-            // "       var c : real;\n" +
+            // "   begin\n" +
+            // "   end;\n" +
+            // "" +
+            // "   function func(a, b: integer): integer;\n" +
             // "   begin\n" +
             // "   end;\n" +
             // "" +

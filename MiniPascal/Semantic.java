@@ -72,8 +72,7 @@ public class Semantic extends AbsSemantic {
             @SuppressWarnings("unchecked")
             List<String> list = (List<String>)action.GetAttribute(0);
 
-            // Argumentos do programa serão declarados como
-            // "undefined"
+            // Argumentos do programa serão declarados como "undefined"
             for(String id: list) {
                 table.InsertParameter(id, new UndefinedType());
             }
