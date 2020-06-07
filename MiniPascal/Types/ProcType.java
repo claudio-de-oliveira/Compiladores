@@ -36,7 +36,7 @@ public class ProcType extends AbsType {
         if (i > 0)
             str += keys[i] + " : " + env.FindLocal(keys[i]);
 
-        str += ")\n";
+        str += ")";
 
         return str;
 

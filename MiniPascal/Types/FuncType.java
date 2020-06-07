@@ -41,9 +41,8 @@ public class FuncType extends AbsType {
         if (i > 0)
             str += keys[i] + " : " + env.FindLocal(keys[i]);
 
-        str += ") : " + ret.toString() + "\n";
+        str += ") : " + ret.toString();
 
         return str;
-
     }
 }

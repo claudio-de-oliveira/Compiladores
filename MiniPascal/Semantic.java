@@ -4,6 +4,7 @@ import java.util.*;
 
 import Compiladores.CompilerBase.*;
 import Compiladores.CompilerBase.LL.*;
+import Compiladores.MiniPascal.Tokens.ConstantToken;
 import Compiladores.MiniPascal.Tokens.IdentifierToken;
 import Compiladores.MiniPascal.Types.*;
 
@@ -91,5 +92,28 @@ public class Semantic extends AbsSemantic {
             actual.InsertLocal(id, new FuncType());
             return;
         }
+
+        // * Ações Semânticas para declaração de arrays
+        // Veja a classe auxiliar Range.java
+        if (action.equals(Tag._BeginRange)) {
+            int cte = (int)((ConstantToken)token).getValue();
+            stk.elementAt(tos-6).SetAttribute(2, cte);
+            return;
+        }
+        if (action.equals(Tag._EndRange)) {
+            int cte = (int)((ConstantToken)token).getValue();
+            stk.elementAt(tos-3).SetAttribute(1, cte);
+            return;
+        }
+        if (action.equals(Tag._ArrayDec)) {
+            AbsType type = (AbsType)action.GetAttribute(0);
+            int range_finish = (int)action.GetAttribute(1);
+            int range_start = (int)action.GetAttribute(2);
+            Range range = new Range(range_start, range_finish);
+            
+            stk.peek().SetAttribute(0, new ArrayType(type, range));
+            return;
+        }
+
     }
 }

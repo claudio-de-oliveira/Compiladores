@@ -7,7 +7,7 @@
 6. <declarations'> ::= .
 7. <declarations'> ::= "var" <identifier_list> @VarIdList ":" <type> @VarDec ";" <declarations'> .
 8. <type> ::= <standard_type> .
-9. <type> ::= "array" "[" "num" ".." "num" "]" "of" <standard_type> .
+9. <type> ::= "array" "[" "num" @_BeginRange ".." "num" @_EndRange "]" "of" <standard_type> @_ArrayDec .
 10. <standard_type> ::= "integer" @Integer .
 11. <standard_type> ::= "real" @Real .
 12. <subprogram_declarations> ::= <subprogram_declarations'> .

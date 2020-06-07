@@ -198,9 +198,14 @@ public class Scanner extends AbsScanner {
                         _currentPosition++;
                         break;
                     };
-                    // outro: ERRO
-                    state = 100;
-                    _currentPosition++;
+                    // outro: constante inteira
+                    state = 4;
+                    // ------------------------------------------------------------------
+                    // * Não incremente a posição corrente: o ponto encontrado não é 
+                    // * o ponto decimal - então considere-o um caracter não pertencente
+                    // * a uma constante
+                    // ------------------------------------------------------------------
+                    // _currentPosition++;
                     break;
 
                 case 3:

@@ -57,9 +57,7 @@ public class Test {
 
         String text = 
             "program teste (input, output);\n" +
-            "   var x, y, z : integer;\n" +
-            "   var a, b, c : real;\n" +
-            // "   var a : array [1..10] of integer;\n" +
+            "   var a : array [1..10] of integer;\n" +
             // "" +
             // "   procedure proc(a, b: integer);\n" +
             // "   begin\n" +

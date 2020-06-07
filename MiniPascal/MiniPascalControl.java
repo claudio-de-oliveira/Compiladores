@@ -15,7 +15,7 @@ public class MiniPascalControl extends Control {
         /* 6*/ new Tag[] {},
         /* 7*/ new Tag[] {Tag.vt_33, Tag.identifier_list, Tag._VarIdList, Tag.vt_18, Tag.type, Tag._VarDec, Tag.vt_5, Tag.declarations_line, },
         /* 8*/ new Tag[] {Tag.standard_type, },
-        /* 9*/ new Tag[] {Tag.vt_9, Tag.vt_10, Tag.vt_11, Tag.vt_12, Tag.vt_11, Tag.vt_13, Tag.vt_14, Tag.standard_type, },
+        /* 9*/ new Tag[] {Tag.vt_9, Tag.vt_10, Tag.vt_11, Tag._BeginRange, Tag.vt_12, Tag.vt_11, Tag._EndRange, Tag.vt_13, Tag.vt_14, Tag.standard_type, Tag._ArrayDec, },
         /* 10*/ new Tag[] {Tag.vt_15, Tag._Integer, },
         /* 11*/ new Tag[] {Tag.vt_16, Tag._Real, },
         /* 12*/ new Tag[] {Tag.subprogram_declarations_line, },
