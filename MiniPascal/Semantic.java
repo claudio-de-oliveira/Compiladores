@@ -5,6 +5,7 @@ import java.util.*;
 import Compiladores.CompilerBase.*;
 import Compiladores.CompilerBase.LL.*;
 import Compiladores.MiniPascal.Tokens.IdentifierToken;
+import Compiladores.MiniPascal.Types.*;
 
 public class Semantic extends AbsSemantic {
 
@@ -30,21 +31,21 @@ public class Semantic extends AbsSemantic {
             return;
         }
         if (action.equals(Tag._VarDec)) {
-            BasicType type = (BasicType)action.GetAttribute(0);
+            AbsType type = (AbsType)action.GetAttribute(0);
             @SuppressWarnings("unchecked")
             List<String> ids = (List<String>)action.GetAttribute(1);
  
             for(String id: ids) {
-                table.InsertLocal(id, new VarType(type));
+                table.InsertLocal(id, type);
             }
             return;
         }
         if (action.equals(Tag._Integer)) {
-            stk.peek().SetAttribute(0, BasicType.INTEGER); // *** Atividade: Modificar para uma instancia de IntegerType
+            stk.peek().SetAttribute(0, new IntegerType()); // *** Atividade: Modificar para uma instancia de IntegerType
             return;
         }
         if (action.equals(Tag._Real)) {
-            stk.peek().SetAttribute(0, BasicType.REAL); // *** Atividade: Modificar para uma instancia de RealType
+            stk.peek().SetAttribute(0, new RealType()); // *** Atividade: Modificar para uma instancia de RealType
             return;
         }
         if (action.equals(Tag._CreateList)) {

@@ -5,6 +5,7 @@ import java.util.*;
 import Compiladores.CompilerBase.*;
 import Compiladores.CompilerBase.LL.*;
 import Compiladores.MiniPascal.Tokens.*;
+import Compiladores.MiniPascal.Types.*;
 
 public class Scanner extends AbsScanner {
 
@@ -264,10 +265,10 @@ public class Scanner extends AbsScanner {
                         else {
                             // Dentro da parte de instrucoes imperativas
                             // (dentro de begin..end)
-                            IdType type = table.FindGlobal(lexema);
+                            AbsType type = table.FindGlobal(lexema);
 
                             // o identificador é de uma variável?
-                            if (type instanceof VarType) {
+                            if (type instanceof IntegerType || type instanceof RealType) {
                                 return new VarIdentifierToken(lexema);
                             }
                             // o identificador é de uma função?

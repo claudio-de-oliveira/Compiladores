@@ -3,16 +3,18 @@ package Compiladores.MiniPascal;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import Compiladores.CompilerBase.LL.Control;
+import Compiladores.MiniPascal.IC.*;
+import Compiladores.MiniPascal.IC.Addresses.*;
+import Compiladores.MiniPascal.IC.Instructions.*;
 
 public class Test {
 
-    public static void main(final String[] args) {
+    private static void ImprimeGramatica(Control control) {
 
-        final MiniPascalParser parser = new MiniPascalParser();
-
-        // ************************************
-        // Auxílio ao processo de depuração
-        String grammar = parser.getControl().grammar();
+        String grammar = control.grammar();
 
         FileWriter arq;
 
@@ -27,12 +29,37 @@ public class Test {
         catch (IOException e1) {
             e1.printStackTrace();
         }
+    }
+
+    private static void TestaIntermediateCode() {
+
+        Machine m = new Machine();
+
+        m.CreateBinary(Operator.ADD, new Name("x"), new Name("y"), new Name("z"));
+        m.CreateCopy(new Name("x"), new Name("y"));
+
+        ArrayList<TAC> tuples = m.getTuples();
+        ArrayList<IntermediateInstruction> instructions = m.getInstructions();
+    }
+
+    public static void main(final String[] args) {
+
+        final MiniPascalParser parser = new MiniPascalParser();
+
         // ************************************
+        // Auxílio ao processo de depuração
+        ImprimeGramatica(parser.getControl());
+        
+        // ************************************
+        // Testa o gerador de código intermediário
+        TestaIntermediateCode();
+
 
         String text = 
             "program teste (input, output);\n" +
-            "" +
-            "   var a : array [1..10] of integer;\n" +
+            "   var x, y, z : integer;\n" +
+            "   var a, b, c : real;\n" +
+            // "   var a : array [1..10] of integer;\n" +
             // "" +
             // "   procedure proc(a, b: integer);\n" +
             // "   begin\n" +

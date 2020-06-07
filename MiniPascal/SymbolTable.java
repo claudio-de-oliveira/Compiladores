@@ -3,6 +3,8 @@ package Compiladores.MiniPascal;
 import java.util.HashMap;
 import java.util.Map;
 
+import Compiladores.MiniPascal.Types.*;
+
 import Compiladores.CompilerBase.AbstractSymbolTable;
 
 public class SymbolTable extends AbstractSymbolTable {
@@ -15,9 +17,9 @@ public class SymbolTable extends AbstractSymbolTable {
     public SymbolTable _parent;
 
     // Declaração dos parâmetros
-    public Map<String, IdType> _parameters;
+    public Map<String, AbsType> _parameters;
     // Declarações de variáveis, funções e procedimentos 
-    public Map<String, IdType> _locals;
+    public Map<String, AbsType> _locals;
 
     public SymbolTable(SymbolTable parent) {
 
@@ -25,8 +27,8 @@ public class SymbolTable extends AbstractSymbolTable {
         // declarações
         _incode = false;
 
-        _parameters = new HashMap<String, IdType>();
-        _locals = new HashMap<String, IdType>();
+        _parameters = new HashMap<String, AbsType>();
+        _locals = new HashMap<String, AbsType>();
 
         _parent = parent;
     }
@@ -39,16 +41,16 @@ public class SymbolTable extends AbstractSymbolTable {
         _incode = flag;
     }
 
-    public void InsertLocal(String id, IdType type) {
+    public void InsertLocal(String id, AbsType type) {
         _locals.put(id, type);
     }
 
-    public void InsertParameter(String id, IdType type) {
+    public void InsertParameter(String id, AbsType type) {
         _parameters.put(id, type);
     }
 
     // Procura um símbolo no escopo local
-    public IdType FindLocal(String key) {
+    public AbsType FindLocal(String key) {
         // Procura no escopo local
         if (_parameters.containsKey(key)) {
             return _parameters.get(key);
@@ -61,9 +63,9 @@ public class SymbolTable extends AbstractSymbolTable {
     }
 
     // Procura um símbolo no escopo global
-    public IdType FindGlobal(String key) {
+    public AbsType FindGlobal(String key) {
         
-        IdType ret = FindLocal(key);
+        AbsType ret = FindLocal(key);
 
         if (ret != null) {
             return ret;
