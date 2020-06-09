@@ -91,9 +91,11 @@ public class Tag extends AbsTag {
             _VarIdList = new Tag(SEMANTIC | 9, "VarIdList", 1),
             _ProcId = new Tag(SEMANTIC | 10, "ProcId"),
             _FuncId = new Tag(SEMANTIC | 11, "FuncId"),
-            _BeginRange = new Tag(SEMANTIC | 12, "_BeginRange"),
-            _EndRange = new Tag(SEMANTIC | 13, "_EndRange"),
-            _ArrayDec = new Tag(SEMANTIC | 14, "_ArrayDec", 3),
+            _BeginRange = new Tag(SEMANTIC | 12, "BeginRange"),
+            _EndRange = new Tag(SEMANTIC | 13, "EndRange"),
+            _ArrayDec = new Tag(SEMANTIC | 14, "ArrayDec", 3),
+            _Teste = new Tag(SEMANTIC | 15, "Teste", 1),
+            _ListDec = new Tag(SEMANTIC | 16, "ListDec", 2),
             _ProgramArguments = new Tag(SEMANTIC | 900, "ProgramArguments", 1)
             ;
 

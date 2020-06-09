@@ -82,7 +82,7 @@ public class Semantic extends AbsSemantic {
         }
         if (action.equals(Tag._ProcId)) {
             String id = ((IdentifierToken)token).getId();
-            SymbolTable actual = SymbolTable.actual;
+            SymbolTable actual = SymbolTable.actual; // Test
             actual.InsertLocal(id, new ProcType());
             return;
         }
@@ -110,10 +110,24 @@ public class Semantic extends AbsSemantic {
             int range_finish = (int)action.GetAttribute(1);
             int range_start = (int)action.GetAttribute(2);
             Range range = new Range(range_start, range_finish);
-            
             stk.peek().SetAttribute(0, new ArrayType(type, range));
             return;
         }
 
+        if (action.equals(Tag._Teste)) {
+            stk.elementAt(tos-2).SetAttribute(1, action.GetAttribute(0));
+            return;
+        }
+
+        if (action.equals(Tag._ListDec)) {
+            AbsType type = (AbsType)action.GetAttribute(0);
+            List<String> list = (List<String>)action.GetAttribute(1);
+            SymbolTable actual = SymbolTable.actual;
+            for (String id : list) {
+                actual.InsertParameter(id, type);
+            }
+
+            return;
+        }
     }
 }

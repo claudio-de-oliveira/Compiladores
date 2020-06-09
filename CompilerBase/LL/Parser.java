@@ -3,6 +3,7 @@ package Compiladores.CompilerBase.LL;
 import java.util.Stack;
 
 import Compiladores.CompilerBase.*;
+import Compiladores.MiniPascal.SymbolTable;
 
 public abstract class Parser {
 
@@ -11,14 +12,14 @@ public abstract class Parser {
 
     private final AbsScanner _scanner;
     private final AbsSemantic _semantic;
-    private final AbstractSymbolTable _env;
+    // private final AbstractSymbolTable _env;
     private final Stack<AbsTag> _stk; // Pilha do parser
 
     public Parser(Control control, AbsScanner scanner, AbsSemantic semantic, AbstractSymbolTable env) {
         _control = control;
         _scanner = scanner;
         _semantic = semantic;
-        _env = env;
+        // _env = env;
         _stk = new Stack<AbsTag>();
     }
 
@@ -37,7 +38,7 @@ public abstract class Parser {
         AbstractToken token = null;
 
         try {
-            token = _scanner.nextToken(_env, txt);
+            token = _scanner.nextToken(SymbolTable.actual, txt);
 
             System.out.println(token);
 
@@ -69,7 +70,7 @@ public abstract class Parser {
 
                         // pop
                         previous = token;
-                        token = _scanner.nextToken(_env, txt);
+                        token = _scanner.nextToken(SymbolTable.actual, txt);
                         System.out.println(token);
                     } 
                     else {
@@ -77,7 +78,7 @@ public abstract class Parser {
                     }
                 } 
                 else {
-                    _semantic.Execute(_env, A, _stk, previous);
+                    _semantic.Execute(SymbolTable.actual, A, _stk, previous);
                 }
             }
         } 

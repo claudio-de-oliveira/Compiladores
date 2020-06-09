@@ -10,8 +10,7 @@ public class Range {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return start + ".." + finish;
     }
 }

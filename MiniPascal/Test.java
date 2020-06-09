@@ -19,7 +19,7 @@ public class Test {
         FileWriter arq;
 
         try {
-            arq = new FileWriter(".\\Compiladores\\MiniPascal\\Grammar.txt");
+            arq = new FileWriter(".\\Compiladores\\MiniPascal\\Docs\\Grammar.txt");
             PrintWriter gravarArq = new PrintWriter(arq);
              
             gravarArq.printf(grammar);
@@ -58,15 +58,11 @@ public class Test {
         String text = 
             "program teste (input, output);\n" +
             "   var a : array [1..10] of integer;\n" +
-            // "" +
-            // "   procedure proc(a, b: integer);\n" +
-            // "   begin\n" +
-            // "   end;\n" +
-            // "" +
-            // "   function func(a, b: integer): integer;\n" +
-            // "   begin\n" +
-            // "   end;\n" +
-            // "" +
+            "" +
+            "   procedure proc(a, b : integer; x, y : real);\n" +
+            "   begin\n" +
+            "   end;\n" +
+            "" +
             "begin\n" +
             "end.\n";
 
