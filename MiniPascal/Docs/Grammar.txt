@@ -12,14 +12,14 @@
 11. <standard_type> ::= "real" @Real .
 12. <subprogram_declarations> ::= <subprogram_declarations'> .
 13. <subprogram_declarations'> ::= .
-14. <subprogram_declarations'> ::= <subprogram_head> <declarations> <compound_statement> ";" <subprogram_declarations'> .
+14. <subprogram_declarations'> ::= <subprogram_head> <declarations> <compound_statement> @RestoreEnv ";" <subprogram_declarations'> .
 16. <subprogram_head> ::= "procedure" "id" @ProcId <arguments> ";" .
-15. <subprogram_head> ::= "function" "id" @FuncId <arguments> ":" <standard_type> ";" .
+15. <subprogram_head> ::= "function" "id" @FuncId <arguments> ":" <standard_type> @FuncType ";" .
 17. <arguments> ::= .
 18. <arguments> ::= "(" <parameter_list> ")" .
 19. <parameter_list> ::= "id" @CreateList <identifier_list'> @Teste ":" <type> @ListDec <parameter_list'> .
 20. <parameter_list'> ::= .
-21. <parameter_list'> ::= ";" <identifier_list> @Teste ":" <type> <parameter_list'> .
+21. <parameter_list'> ::= ";" <identifier_list> @Teste ":" <type> @ListDec <parameter_list'> .
 22. <compound_statement> ::= @Begin "begin" <optional_statements> @End "end" .
 23. <optional_statements> ::= .
 24. <optional_statements> ::= <statement_list> .

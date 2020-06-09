@@ -59,7 +59,12 @@ public class Test {
             "program teste (input, output);\n" +
             "   var a : array [1..10] of integer;\n" +
             "" +
-            "   procedure proc(a, b : integer; x, y : real);\n" +
+            "   function func(a, b : integer; x, y : real) : integer;\n" +
+            "      var i, j, k : real;\n" +
+            "   begin\n" +
+            "   end;\n" +
+            "" +
+            "   procedure teste(x : integer);\n" +
             "   begin\n" +
             "   end;\n" +
             "" +

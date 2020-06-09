@@ -5,7 +5,7 @@ import Compiladores.MiniPascal.SymbolTable;
 public class FuncType extends AbsType {
 
     // tipo da função
-    public AbsType ret;
+    public AbsType type;
     // Escopo da função
     public SymbolTable env;
 
@@ -41,7 +41,7 @@ public class FuncType extends AbsType {
         if (i > 0)
             str += keys[i] + " : " + env.FindLocal(keys[i]);
 
-        str += ") : " + ret.toString();
+        str += ") : " + type.toString();
 
         return str;
     }

@@ -96,6 +96,8 @@ public class Tag extends AbsTag {
             _ArrayDec = new Tag(SEMANTIC | 14, "ArrayDec", 3),
             _Teste = new Tag(SEMANTIC | 15, "Teste", 1),
             _ListDec = new Tag(SEMANTIC | 16, "ListDec", 2),
+            _FuncType = new Tag(SEMANTIC | 17, "FuncType", 2),
+            _RestoreEnv = new Tag(SEMANTIC | 18, "RestoreEnv"),
             _ProgramArguments = new Tag(SEMANTIC | 900, "ProgramArguments", 1)
             ;
 

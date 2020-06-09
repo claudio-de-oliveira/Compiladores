@@ -90,6 +90,9 @@ public class Semantic extends AbsSemantic {
             String id = ((IdentifierToken)token).getId();
             SymbolTable actual = SymbolTable.actual;
             actual.InsertLocal(id, new FuncType());
+            // **************************
+            stk.elementAt(tos-3).SetAttribute(1, id);
+            // **************************
             return;
         }
 
@@ -126,7 +129,19 @@ public class Semantic extends AbsSemantic {
             for (String id : list) {
                 actual.InsertParameter(id, type);
             }
+            return;
+        }
 
+        if (action.equals(Tag._FuncType)) {
+            AbsType type = (AbsType)action.GetAttribute(0);
+            String id = (String)action.GetAttribute(1);
+            FuncType ftype = (FuncType)SymbolTable.actual._parent.FindLocal(id);
+            ftype.type = type;
+            return;
+        }
+
+        if (action.equals(Tag._RestoreEnv)) {
+            SymbolTable.actual = SymbolTable.actual._parent;
             return;
         }
     }
