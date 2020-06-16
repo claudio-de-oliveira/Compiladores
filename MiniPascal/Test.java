@@ -58,10 +58,11 @@ public class Test {
         String text = 
             "program teste (input, output);\n" +
             "   var a : array [1..10] of integer;\n" +
-            "" +
+            "   var x : integer;\n" +
             "   function func(a, b : integer; x, y : real) : integer;\n" +
             "      var i, j, k : real;\n" +
             "   begin\n" +
+//            "      i := a;\n" +
             "   end;\n" +
             "" +
             "   procedure teste(x : integer);\n" +
@@ -69,6 +70,7 @@ public class Test {
             "   end;\n" +
             "" +
             "begin\n" +
+            "   x := 10;\n" +
             "end.\n";
 
         try {

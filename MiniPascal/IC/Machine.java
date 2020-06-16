@@ -7,43 +7,36 @@ import Compiladores.MiniPascal.IC.Instructions.*;
 
 public class Machine {
     
-    private ArrayList<IntermediateInstruction> instructions;
+    private static ArrayList<IntermediateInstruction> instructions 
+        = new ArrayList<IntermediateInstruction>();
 
-    public Machine() {
-        instructions = new ArrayList<IntermediateInstruction>();
-    }
-
-    public IntermediateInstruction getIntermediateInstruction(int i) {
+    public static IntermediateInstruction getIntermediateInstruction(int i) {
         return instructions.get(i);
     }
 
-    public int getCount() { 
+    public static int getCount() { 
         return instructions.toArray().length; 
     } 
 
-    public IntermediateInstruction get(int index) {
+    public static IntermediateInstruction get(int index) {
         return instructions.get(index);
     }
 
-    public ArrayList<IntermediateInstruction> getInstructions() {
+    public static ArrayList<IntermediateInstruction> getInstructions() {
         return instructions;
     }
-    public ArrayList<TAC> getTuples() {
+    public static ArrayList<TAC> getTuples() {
         return IntermediateInstruction.tuples;
     }
 
-    public int Count() { 
-        return instructions.size(); 
-    }
-
-    public void AddInstruction(IntermediateInstruction inst) {
+    public static void AddInstruction(IntermediateInstruction inst) {
         instructions.add(inst);
     }
 
-    public IntermediateInstruction CreateBinary(Operator op, Address x, Address y, Address z) {
+    public static IntermediateInstruction CreateBinary(Operator op, Address x, Address y, Address z) {
         return CreateBinary(op, x, y, z, 0);
     }
-    public IntermediateInstruction CreateBinary(Operator op, Address x, Address y, Address z, int level)
+    public static IntermediateInstruction CreateBinary(Operator op, Address x, Address y, Address z, int level)
     // x = y op z
     {
         assert (x instanceof Name) : "Invalid Parameter Type";
@@ -52,10 +45,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateUnary(Operator op, Address x, Address y) {
+    public static IntermediateInstruction CreateUnary(Operator op, Address x, Address y) {
         return CreateUnary(op, x, y, 0);
     }
-    public IntermediateInstruction CreateUnary(Operator op, Address x, Address y, int level)
+    public static IntermediateInstruction CreateUnary(Operator op, Address x, Address y, int level)
     // op x
     {
         assert (x instanceof Name) : "Invalid Parameter Type";
@@ -64,10 +57,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateCopy(Address x, Address y) {
+    public static IntermediateInstruction CreateCopy(Address x, Address y) {
         return CreateCopy(x, y, 0);
     }
-    public IntermediateInstruction CreateCopy(Address x, Address y, int level)
+    public static IntermediateInstruction CreateCopy(Address x, Address y, int level)
     // x = y
     {
         assert (x instanceof Name) : "Invalid Parameter Type";
@@ -76,10 +69,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateGoto(Label L) {
+    public static IntermediateInstruction CreateGoto(Label L) {
         return CreateGoto(L, 0);
     }
-    public IntermediateInstruction CreateGoto(Label L, int level)
+    public static IntermediateInstruction CreateGoto(Label L, int level)
     // goto L
     {
         IntermediateInstruction inst = new Goto(L, level);
@@ -87,10 +80,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateIfTrue(Address x, Label L) {
+    public static IntermediateInstruction CreateIfTrue(Address x, Label L) {
         return CreateIfTrue(x, L, 0);
     }
-    public IntermediateInstruction CreateIfTrue(Address x, Label L, int level)
+    public static IntermediateInstruction CreateIfTrue(Address x, Label L, int level)
     // if x goto L
     {
         IntermediateInstruction inst = new IfTrue(x, L, level);
@@ -98,10 +91,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateIfFalse(Address x, Label L) {
+    public static IntermediateInstruction CreateIfFalse(Address x, Label L) {
         return CreateIfFalse(x, L, 0);
     }
-    public IntermediateInstruction CreateIfFalse(Address x, Label L, int level)
+    public static IntermediateInstruction CreateIfFalse(Address x, Label L, int level)
     // ifFalse x goto L
     {
         IntermediateInstruction inst = new IfFalse(x, L, level);
@@ -109,10 +102,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateIfExp(Operator oprel, Address x, Address y, Label L) {
+    public static IntermediateInstruction CreateIfExp(Operator oprel, Address x, Address y, Label L) {
         return CreateIfExp(oprel, x, y, L, 0);
     }
-    public IntermediateInstruction CreateIfExp(Operator oprel, Address x, Address y, Label L, int level)
+    public static IntermediateInstruction CreateIfExp(Operator oprel, Address x, Address y, Label L, int level)
     // if x oprel y goto L ===> tmp := x oprel y, if tmp goto L
     {
         IntermediateInstruction inst = new IfExp(oprel, x, y, L, level);
@@ -120,10 +113,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateParam(Address x) {
+    public static IntermediateInstruction CreateParam(Address x) {
         return CreateParam(x, 0);
     }
-    public IntermediateInstruction CreateParam(Address x, int level)
+    public static IntermediateInstruction CreateParam(Address x, int level)
     // param x
     {
         IntermediateInstruction inst = new Param(x, level);
@@ -131,20 +124,20 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateCall(Label p, int n) {
+    public static IntermediateInstruction CreateCall(Label p, int n) {
         return CreateCall(p, n, 0);
     }
-    public IntermediateInstruction CreateCall(Label p, int n, int level)
+    public static IntermediateInstruction CreateCall(Label p, int n, int level)
     {
         IntermediateInstruction inst = new Call(p, n, level);
         instructions.add(inst);
         return inst;
     }
 
-    public IntermediateInstruction CreateReturn() {
+    public static IntermediateInstruction CreateReturn() {
         return CreateReturn(0);
     }
-    public IntermediateInstruction CreateReturn(int level)
+    public static IntermediateInstruction CreateReturn(int level)
     // return
     {
         IntermediateInstruction inst = new Return(level);
@@ -152,10 +145,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateRetVal(Address x) {
+    public static IntermediateInstruction CreateRetVal(Address x) {
         return CreateRetVal(x, 0);
     }
-    public IntermediateInstruction CreateRetVal(Address x, int level)
+    public static IntermediateInstruction CreateRetVal(Address x, int level)
     // return x
     {
         IntermediateInstruction inst = new Return(x, level);
@@ -163,10 +156,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateFromArray(Address x, Address i, Address y) {
+    public static IntermediateInstruction CreateFromArray(Address x, Address i, Address y) {
         return CreateFromArray(x, i, y, 0);
     }
-    public IntermediateInstruction CreateFromArray(Address x, Address i, Address y, int level)
+    public static IntermediateInstruction CreateFromArray(Address x, Address i, Address y, int level)
     // x = y[i] ===> tmp = y[i], x = tmp
     {
         assert (x instanceof Name) : "Invalid Parameter Type";
@@ -175,10 +168,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateToArray(Address x, Address i, Address y) {
+    public static IntermediateInstruction CreateToArray(Address x, Address i, Address y) {
         return CreateToArray(x, i, y, 0);
     }
-    public IntermediateInstruction CreateToArray(Address x, Address i, Address y, int level)
+    public static IntermediateInstruction CreateToArray(Address x, Address i, Address y, int level)
     // x[i] = y
     {
         IntermediateInstruction inst = new ToArray(x, i, y, level);
@@ -186,10 +179,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateAddressOf(Address x, Address y) {
+    public static IntermediateInstruction CreateAddressOf(Address x, Address y) {
         return CreateAddressOf(x, y, 0);
     }
-    public IntermediateInstruction CreateAddressOf(Address x, Address y, int level)
+    public static IntermediateInstruction CreateAddressOf(Address x, Address y, int level)
     // x = &y
     {
         assert (x instanceof Name) : "Invalid Parameter Type";
@@ -198,10 +191,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateFromMemory(Address x, Address y) {
+    public static IntermediateInstruction CreateFromMemory(Address x, Address y) {
         return CreateFromMemory(x, y, 0);
     }
-    public IntermediateInstruction CreateFromMemory(Address x, Address y, int level)
+    public static IntermediateInstruction CreateFromMemory(Address x, Address y, int level)
     // x = *y
     {
         assert (x instanceof Name) : "Invalid Parameter Type";
@@ -210,10 +203,10 @@ public class Machine {
         return inst;
     }
 
-    public IntermediateInstruction CreateToMemory(Address x, Address y) {
+    public static IntermediateInstruction CreateToMemory(Address x, Address y) {
         return CreateToMemory(x, y, 0);
     }
-    public IntermediateInstruction CreateToMemory(Address x, Address y, int level)
+    public static IntermediateInstruction CreateToMemory(Address x, Address y, int level)
     // *x = y
     {
         IntermediateInstruction inst = new ToMemory(x, y, level);

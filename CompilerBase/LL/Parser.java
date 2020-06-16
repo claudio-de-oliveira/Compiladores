@@ -12,14 +12,12 @@ public abstract class Parser {
 
     private final AbsScanner _scanner;
     private final AbsSemantic _semantic;
-    // private final AbstractSymbolTable _env;
     private final Stack<AbsTag> _stk; // Pilha do parser
 
-    public Parser(Control control, AbsScanner scanner, AbsSemantic semantic, AbstractSymbolTable env) {
+    public Parser(Control control, AbsScanner scanner, AbsSemantic semantic) {
         _control = control;
         _scanner = scanner;
         _semantic = semantic;
-        // _env = env;
         _stk = new Stack<AbsTag>();
     }
 

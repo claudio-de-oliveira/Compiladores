@@ -8,7 +8,7 @@ import Compiladores.CompilerBase.LL.Parser;
 public class ExpressionParser extends Parser {
 
     public ExpressionParser() {
-        super(new ExpressionControl(), new Scanner(), new Semantic(), null);
+        super(new ExpressionControl(), new Scanner(), new Semantic());
     }
 
     @Override

@@ -4,9 +4,11 @@ import java.util.*;
 
 import Compiladores.CompilerBase.*;
 import Compiladores.CompilerBase.LL.*;
-import Compiladores.MiniPascal.Tokens.ConstantToken;
-import Compiladores.MiniPascal.Tokens.IdentifierToken;
+import Compiladores.MiniPascal.Tokens.*;
 import Compiladores.MiniPascal.Types.*;
+import Compiladores.MiniPascal.IC.Addresses.*;
+import Compiladores.MiniPascal.IC.Machine;
+import Compiladores.MiniPascal.IC.Instructions.IntermediateInstruction;
 
 public class Semantic extends AbsSemantic {
 
@@ -144,5 +146,66 @@ public class Semantic extends AbsSemantic {
             SymbolTable.actual = SymbolTable.actual._parent;
             return;
         }
+
+        if (action.equals(Tag._LValue)) {
+            String id = (String) action.GetAttribute(0);
+            stk.elementAt(tos-2).SetAttribute(1, id);
+            return;
+        }
+        if (action.equals(Tag._Assign)) {
+            return;
+        }
+        // Expressões
+        if (action.equals(Tag._Number)) {
+            int cte = (int)((ConstantToken)token).getValue();
+            Name tmp = new Name();
+            IntermediateInstruction inst = Machine.CreateCopy(tmp, Constant.Create(cte));
+            stk.peek().SetAttribute(0, inst.getTarget());
+            return;
+        }
+        if (action.equals(Tag._Variable)) {
+            String id = ((VarIdentifierToken)token).getId();
+            stk.peek().SetAttribute(0, id);
+            return;
+        }
+        if (action.equals(Tag._SimpleVar)) {
+            String v = ((VarIdentifierToken)token).getId();
+            stk.peek().SetAttribute(0, v);
+            return;
+            //String id = (String) action.GetAttribute(0);
+            //Name tmp = new Name();
+            //IntermediateInstruction inst = Machine.CreateFromMemory(tmp, new Name(id));
+            //stk.peek().SetAttribute(0, inst.getTarget());
+            //return;
+        }
+        if (action.equals(Tag._Skip)) {
+            stk.elementAt(tos-1).SetAttribute(0, action.GetAttribute(0));
+            return;
+        }
+        if (action.equals(Tag._ArrayVar)) {
+            Address index = (Address)action.GetAttribute(0);
+            String id = (String)action.GetAttribute(1);
+            Name tmp = new Name();
+            IntermediateInstruction inst = Machine.CreateFromArray(tmp, index, new Name(id));
+            stk.peek().SetAttribute(0, inst.getTarget());
+            return;
+        }
+        if (action.equals(Tag._IdFuncCall)) {
+            String idFunc = ((IdentifierToken)token).getId();
+            stk.elementAt(tos-4).SetAttribute(1, idFunc);
+
+            return;
+        }
+        if (action.equals(Tag._ActualParameters)) {
+            
+        }
+        if (action.equals(Tag._FunctionCall)) {
+            
+        }
+        if (action.equals(Tag._MulOp)) {
+            
+        }
+
+        
     }
 }

@@ -24,18 +24,18 @@ public class Tag extends AbsTag {
             statement_list = new Tag(VARIABLE | 16, "statement_list", 0),
             statement = new Tag(VARIABLE | 17, "statement", 0), 
             variable = new Tag(VARIABLE | 18, "variable", 0),
-            variable_line = new Tag(VARIABLE | 19, "variable'", 0),
+            variable_line = new Tag(VARIABLE | 19, "variable'", 1),
             expression = new Tag(VARIABLE | 20, "expression", 0),
             simple_expression = new Tag(VARIABLE | 21, "simple_expression", 0),
             term = new Tag(VARIABLE | 22, "term", 0), 
             factor = new Tag(VARIABLE | 23, "factor", 0),
-            factor_line = new Tag(VARIABLE | 24, "factor'", 0),
+            factor_line = new Tag(VARIABLE | 24, "factor'", 1),
             expression_list = new Tag(VARIABLE | 25, "expression_list", 0),
-            simple_expression_line = new Tag(VARIABLE | 26, "simple_expression'", 0),
-            expression_line = new Tag(VARIABLE | 27, "expression'", 0),
+            simple_expression_line = new Tag(VARIABLE | 26, "simple_expression'", 1),
+            expression_line = new Tag(VARIABLE | 27, "expression'", 1),
             expression_list_line = new Tag(VARIABLE | 28, "expression_list'", 0),
             sign = new Tag(VARIABLE | 29, "sign", 0), 
-            term_line = new Tag(VARIABLE | 30, "term'", 0),
+            term_line = new Tag(VARIABLE | 30, "term'", 1),
             procedure_statement = new Tag(VARIABLE | 31, "procedure_statement", 0),
             procedure_statement_line = new Tag(VARIABLE | 32, "procedure_statement'", 0),
             statement_list_line = new Tag(VARIABLE | 33, "statement_list'", 0);
@@ -98,6 +98,19 @@ public class Tag extends AbsTag {
             _ListDec = new Tag(SEMANTIC | 16, "ListDec", 2),
             _FuncType = new Tag(SEMANTIC | 17, "FuncType", 2),
             _RestoreEnv = new Tag(SEMANTIC | 18, "RestoreEnv"),
+            // Expressões
+            _Number = new Tag(SEMANTIC | 19, "Number"),
+            _Variable = new Tag(SEMANTIC | 20, "Variable"),
+            _SimpleVar = new Tag(SEMANTIC | 21, "SimpleVar"),
+            _Skip = new Tag(SEMANTIC | 22, "Skip"),
+            _ArrayVar = new Tag(SEMANTIC | 23, "ArrayVar"),
+            _IdFuncCall = new Tag(SEMANTIC | 24, "IdFuncCall"),
+            _ActualParameters = new Tag(SEMANTIC | 25, "ActualParameters"),
+            _FunctionCall = new Tag(SEMANTIC | 26, "FunctionCall"),
+            _MulOp = new Tag(SEMANTIC | 27, "MulOp", 2),
+            _LValue = new Tag(SEMANTIC | 28, "LValue", 1),
+            _Assign = new Tag(SEMANTIC | 29, "Assign", 2),
+
             _ProgramArguments = new Tag(SEMANTIC | 900, "ProgramArguments", 1)
             ;
 
