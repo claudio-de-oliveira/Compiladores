@@ -9,8 +9,17 @@ import Compiladores.MiniPascal.Types.*;
 import Compiladores.MiniPascal.IC.Addresses.*;
 import Compiladores.MiniPascal.IC.Machine;
 import Compiladores.MiniPascal.IC.Instructions.IntermediateInstruction;
+import Compiladores.MiniPascal.IC.Instructions.Operator;
 
 public class Semantic extends AbsSemantic {
+
+    private void Imprime() {
+        String str = "";
+
+        for (int i = 0; i < Machine.getCount(); i++)
+            str += Machine.getIntermediateInstruction(i).toString() + "\n";
+        System.out.println(str);
+    }
 
     @Override
     public void Execute(AbstractSymbolTable env, AbsTag action, Stack<AbsTag> stk, AbstractToken token) {
@@ -84,7 +93,7 @@ public class Semantic extends AbsSemantic {
         }
         if (action.equals(Tag._ProcId)) {
             String id = ((IdentifierToken)token).getId();
-            SymbolTable actual = SymbolTable.actual; // Test
+            SymbolTable actual = SymbolTable.actual;
             actual.InsertLocal(id, new ProcType());
             return;
         }
@@ -126,6 +135,7 @@ public class Semantic extends AbsSemantic {
 
         if (action.equals(Tag._ListDec)) {
             AbsType type = (AbsType)action.GetAttribute(0);
+            @SuppressWarnings("unchecked")
             List<String> list = (List<String>)action.GetAttribute(1);
             SymbolTable actual = SymbolTable.actual;
             for (String id : list) {
@@ -148,11 +158,15 @@ public class Semantic extends AbsSemantic {
         }
 
         if (action.equals(Tag._LValue)) {
-            String id = (String) action.GetAttribute(0);
+            Address id = (Address) action.GetAttribute(0);
             stk.elementAt(tos-2).SetAttribute(1, id);
             return;
         }
         if (action.equals(Tag._Assign)) {
+            Name id = (Name)action.GetAttribute(1);
+            Name address = (Name)action.GetAttribute(0);
+            Machine.CreateCopy(id, address);
+            Imprime();
             return;
         }
         // Expressões
@@ -165,18 +179,13 @@ public class Semantic extends AbsSemantic {
         }
         if (action.equals(Tag._Variable)) {
             String id = ((VarIdentifierToken)token).getId();
-            stk.peek().SetAttribute(0, id);
+            stk.peek().SetAttribute(0, new Name(id));
             return;
         }
         if (action.equals(Tag._SimpleVar)) {
             String v = ((VarIdentifierToken)token).getId();
-            stk.peek().SetAttribute(0, v);
+            stk.peek().SetAttribute(0, new Name(v));
             return;
-            //String id = (String) action.GetAttribute(0);
-            //Name tmp = new Name();
-            //IntermediateInstruction inst = Machine.CreateFromMemory(tmp, new Name(id));
-            //stk.peek().SetAttribute(0, inst.getTarget());
-            //return;
         }
         if (action.equals(Tag._Skip)) {
             stk.elementAt(tos-1).SetAttribute(0, action.GetAttribute(0));
@@ -184,28 +193,51 @@ public class Semantic extends AbsSemantic {
         }
         if (action.equals(Tag._ArrayVar)) {
             Address index = (Address)action.GetAttribute(0);
-            String id = (String)action.GetAttribute(1);
-            Name tmp = new Name();
-            IntermediateInstruction inst = Machine.CreateFromArray(tmp, index, new Name(id));
+            Name id = (Name)action.GetAttribute(1);
+            IntermediateInstruction inst = Machine.CreateFromArray(new Name(), index, id);
             stk.peek().SetAttribute(0, inst.getTarget());
             return;
         }
         if (action.equals(Tag._IdFuncCall)) {
             String idFunc = ((IdentifierToken)token).getId();
             stk.elementAt(tos-4).SetAttribute(1, idFunc);
-
             return;
         }
+        if (action.equals(Tag._DoNothing)) {
+            stk.peek().SetAttribute(0, action.GetAttribute(0));
+            return;
+        }
+        if (action.equals(Tag._Not)) {
+            Address fator = (Address)action.GetAttribute(0);
+            Name tmp = new Name();
+            Machine.CreateUnary(Operator.NOT, tmp, fator);
+            stk.peek().SetAttribute(0, tmp);
+            return;
+        }
+
         if (action.equals(Tag._ActualParameters)) {
             
         }
         if (action.equals(Tag._FunctionCall)) {
             
         }
-        if (action.equals(Tag._MulOp)) {
-            
+        if (action.equals(Tag._Operator)){
+            Operator op = ((MulOpToken)token).getOp();
+            stk.elementAt(tos-1).SetAttribute(1, op);
+            return;
         }
-
-        
+        if (action.equals(Tag._MulOp)) {
+            Address left = (Address)action.GetAttribute(2);
+            Operator op = (Operator)action.GetAttribute(1);
+            Address right = (Address)action.GetAttribute(0);
+            Name tmp = new Name();
+            Machine.CreateBinary(op, tmp, left, right);
+            stk.peek().SetAttribute(0, tmp);
+            return;
+        }
+        if (action.equals(Tag._Dump)){
+            Imprime();
+            return;
+        }
     }
 }

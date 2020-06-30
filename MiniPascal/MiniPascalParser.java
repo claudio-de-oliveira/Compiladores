@@ -31,10 +31,15 @@ public class MiniPascalParser extends Parser {
             case 33: {
                 stk.peek().SetAttribute(0, A.GetAttribute(0));
                 break;
-            }            
+            }         
+            // 34. <variable'> ::= "[" <expression> @Skip "]" @ArrayVar .
+            case 34: {
+                stk.elementAt(tos - 4).SetAttribute(1, A.GetAttribute(0));
+                break;
+            }         
             // 44. <factor'> ::= @SimpleVar .
             case 44: {
-//                stk.peek().SetAttribute(0, A.GetAttribute(0));
+                stk.peek().SetAttribute(0, A.GetAttribute(0));
                 break;
             }
             // 45. <factor'> ::= "[" <expression> @Skip "]" @ArrayVar .
@@ -57,7 +62,11 @@ public class MiniPascalParser extends Parser {
                 stk.peek().SetAttribute(0, A.GetAttribute(0));
                 break;
             }            
-            // 56. <term'> ::= "mulop" <factor> @MulOp <term'> .            
+            // 56. <term'> ::= "mulop" @operator <factor> @MulOp <term'> .
+            case 56: { /*********/
+                stk.elementAt(tos - 3).SetAttribute(2, A.GetAttribute(0));
+                break;
+            }            
             
             default: {
                 // Nothing todo

@@ -4,6 +4,7 @@ import java.util.*;
 
 import Compiladores.CompilerBase.*;
 import Compiladores.CompilerBase.LL.*;
+import Compiladores.MiniPascal.IC.Instructions.Operator;
 import Compiladores.MiniPascal.Tokens.*;
 import Compiladores.MiniPascal.Types.*;
 
@@ -273,7 +274,7 @@ public class Scanner extends AbsScanner {
                             AbsType type = table.FindGlobal(lexema);
 
                             // o identificador é de uma variável?
-                            if (type instanceof IntegerType || type instanceof RealType) {
+                            if (type instanceof IntegerType || type instanceof RealType || type instanceof ArrayType) {
                                 return new VarIdentifierToken(lexema);
                             }
                             // o identificador é de uma função?
@@ -298,19 +299,19 @@ public class Scanner extends AbsScanner {
 
                 case 13:
                     if (lexema == "+") {
-                        return new AddOpToken(Operators.ADD);
+                        return new AddOpToken(Operator.ADD);
                     }
                     if (lexema == "-") {
-                        return new AddOpToken(Operators.SUB);
+                        return new AddOpToken(Operator.SUB);
                     }
                     assert(false): "Não pode chegar aqui!"; 
 
                 case 14:
-                    if (lexema == "*") {
-                        return new MulOpToken(Operators.MUL);
+                    if (lexema.equals("*")) {
+                        return new MulOpToken(Operator.MUL);
                     }
-                    if (lexema == "/") {
-                        return new MulOpToken(Operators.DIV);
+                    if (lexema.equals("/")) {
+                        return new MulOpToken(Operator.DIV);
                     }
                     throw new Exception("Não pode chegar aqui!"); 
 
@@ -352,26 +353,26 @@ public class Scanner extends AbsScanner {
                     // RETRACT 
                     _currentPosition--;
 
-                    if (lexema == "<") {
-                        return new RelOpToken(Operators.LT);
+                    if (lexema.equals("<")) {
+                        return new RelOpToken(Operator.LT);
                     }
-                    if (lexema == ">") {
-                        return new RelOpToken(Operators.GT);
+                    if (lexema.equals(">")) {
+                        return new RelOpToken(Operator.GT);
                     }
-                    if (lexema == "=") { // =
-                        return new RelOpToken(Operators.EQ);
+                    if (lexema.equals("=")) { // =
+                        return new RelOpToken(Operator.EQ);
                     }
                     throw new Exception("Não pode chegar aqui!"); 
 
                 case 20: // relop
-                    if (lexema == "<=") {
-                        return new RelOpToken(Operators.LE);
+                    if (lexema.equals("<=")) {
+                        return new RelOpToken(Operator.LE);
                     }
-                    if (lexema == ">=") {
-                        return new RelOpToken(Operators.GE);
+                    if (lexema.equals(">=")) {
+                        return new RelOpToken(Operator.GE);
                     }
-                    if (lexema == "<>") {
-                        return new RelOpToken(Operators.NEQ);
+                    if (lexema.equals("<>")) {
+                        return new RelOpToken(Operator.NEQ);
                     }
                     assert(false): "Não pode chegar aqui!"; 
 

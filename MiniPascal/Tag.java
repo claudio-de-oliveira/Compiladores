@@ -102,15 +102,20 @@ public class Tag extends AbsTag {
             _Number = new Tag(SEMANTIC | 19, "Number"),
             _Variable = new Tag(SEMANTIC | 20, "Variable"),
             _SimpleVar = new Tag(SEMANTIC | 21, "SimpleVar"),
-            _Skip = new Tag(SEMANTIC | 22, "Skip"),
-            _ArrayVar = new Tag(SEMANTIC | 23, "ArrayVar"),
+            _Skip = new Tag(SEMANTIC | 22, "Skip", 1),
+            _ArrayVar = new Tag(SEMANTIC | 23, "ArrayVar", 2),
             _IdFuncCall = new Tag(SEMANTIC | 24, "IdFuncCall"),
             _ActualParameters = new Tag(SEMANTIC | 25, "ActualParameters"),
             _FunctionCall = new Tag(SEMANTIC | 26, "FunctionCall"),
-            _MulOp = new Tag(SEMANTIC | 27, "MulOp", 2),
+            _MulOp = new Tag(SEMANTIC | 27, "MulOp", 3), /*****/
             _LValue = new Tag(SEMANTIC | 28, "LValue", 1),
             _Assign = new Tag(SEMANTIC | 29, "Assign", 2),
+            _IndexedVar = new Tag(SEMANTIC | 30, "IndexedVar", 1),
+            _DoNothing = new Tag(SEMANTIC | 31, "DoNothing", 1),
+            _Not = new Tag(SEMANTIC | 32, "Not", 1),
+            _Operator = new Tag(SEMANTIC | 33, "Operator", 0),
 
+            _Dump = new Tag(SEMANTIC | 899, "Dump"),
             _ProgramArguments = new Tag(SEMANTIC | 900, "ProgramArguments", 1)
             ;
 

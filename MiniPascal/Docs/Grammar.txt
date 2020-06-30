@@ -1,4 +1,4 @@
-0. <program''> ::= <program> "#" .
+0. <program''> ::= <program> @Dump "#" .
 1. <program> ::= "program" "id" "(" <identifier_list> @ProgramArguments ")" ";" <declarations> <subprogram_declarations> <compound_statement> "." .
 2. <identifier_list> ::= "id" @CreateList <identifier_list'> .
 3. <identifier_list'> ::= @Echo .
@@ -32,7 +32,7 @@
 32. <variable> ::= "idfunc" .
 31. <variable> ::= "idvar" @SimpleVar <variable'> .
 33. <variable'> ::= @Echo .
-34. <variable'> ::= "[" <expression> "]" .
+34. <variable'> ::= "[" <expression> @Skip "]" @ArrayVar .
 35. <expression> ::= <simple_expression> <expression'> .
 36. <simple_expression> ::= <term> <simple_expression'> .
 37. <simple_expression> ::= <sign> <term> <simple_expression'> .
@@ -40,21 +40,25 @@
 39. <factor> ::= "idvar" @Variable <factor'> .
 40. <factor> ::= "idfunc" @IdFuncCall "(" <expression_list> @ActualParameters ")" @FunctionCall .
 41. <factor> ::= "num" @Number .
-42. <factor> ::= "(" <expression> ")" .
-43. <factor> ::= "not" <factor> .
-44. <factor'> ::= .
-45. <factor'> ::= "[" <expression> "]" .
+42. <factor> ::= "(" <expression> @Skip ")" @DoNothing .
+43. <factor> ::= "not" <factor> @Not .
+44. <factor'> ::= @Echo .
+45. <factor'> ::= "[" <expression> @Skip "]" @ArrayVar .
 46. <expression_list> ::= <term> <simple_expression'> <expression'> <expression_list'> .
 47. <expression_list> ::= <sign> <term> <simple_expression'> <expression'> <expression_list'> .
 48. <simple_expression'> ::= @Echo .
-49. <simple_expression'> ::= "addop" <term> <simple_expression'> .
+
+49. <simple_expression'> ::= "addop" @Operator <term> @AddOp <simple_expression'> .
+
 50. <expression'> ::= @Echo .
 51. <expression'> ::= "relop" <simple_expression> .
 52. <expression_list'> ::= .
 53. <expression_list'> ::= "," <expression> <expression_list'> .
 54. <sign> ::= "addop" .
 55. <term'> ::= @Echo .
-56. <term'> ::= "mulop" <factor> @MulOp <term'> .
+
+56. <term'> ::= "mulop" @Operator <factor> @MulOp <term'> .
+
 57. <procedure_statement> ::= "idproc" <procedure_statement'> .
 58. <procedure_statement'> ::= .
 59. <procedure_statement'> ::= "(" <expression_list> ")" .

@@ -1,18 +1,19 @@
 package Compiladores.MiniPascal.Tokens;
 
 import Compiladores.MiniPascal.*;
+import Compiladores.MiniPascal.IC.Instructions.Operator;
 
 public class AddOpToken extends Token {
 
-    private Operators _op;
+    private Operator _op;
 
-    public AddOpToken(Operators op) {
+    public AddOpToken(Operator op) {
         super(Tag.vt_29);
 
         this._op = op;
     }
 
-    public Operators getOp() {
+    public Operator getOp() {
         return _op;
     }
 }
